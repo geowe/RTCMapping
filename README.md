@@ -8,7 +8,9 @@ El objetivo principal es obtener un sistema en el que se refleje la funcionalida
 
 ## Tecnología
 - Nodejs
-- Openlayers
+- Webpack
+- OpenLayers v4.6.4
+- W3.CSS
 - socket.io
 
 ## Normas de contribución
