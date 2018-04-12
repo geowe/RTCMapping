@@ -2,8 +2,14 @@
 Todos los cambios notables de este proyecto quedarán reflejados en este fichero.
 Sistema de versionado adherido a [Semantic Versioning](http://semver.org/).
 
-## [0.0.5]pre-alpha - 2018-04-11
+## [0.0.6]pre-alpha - 2018-04-12
 Versión de prueba disponible [rtcm-app.geowe.org](http://rtcm-app.geowe.org).
+
+### Correcciones
+- Geolocalización usando OSM Nominatim. Cambio de posición de la búsqueda y correcciones
+- Aplicar buffer #25
+
+## [0.0.5]pre-alpha - 2018-04-11
 
 ### Añadido
 - Eliminar elementos #17
