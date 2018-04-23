@@ -23,6 +23,7 @@ Versión de prueba disponible [rtcm-app.geowe.org](http://rtcm-app.geowe.org).
 - issues: #7, #27, #28, #29, #30
 
 
+
 ## [0.0.6]pre-alpha - 2018-04-12
 
 ### Correcciones
