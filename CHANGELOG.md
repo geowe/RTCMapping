@@ -7,6 +7,7 @@ En desarrollo
 
 ### Añadido
 - Edición alfanumérica
+- Cargar datos (desde fichero y desde url).
 
 
 ## [0.0.9]pre-alpha - 2018-04-23
