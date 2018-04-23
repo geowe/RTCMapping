@@ -2,8 +2,28 @@
 Todos los cambios notables de este proyecto quedarán reflejados en este fichero.
 Sistema de versionado adherido a [Semantic Versioning](http://semver.org/).
 
-## [0.0.6]pre-alpha - 2018-04-12
+## [Unreleased]
+En desarrollo
+
+### Añadido
+- Edición alfanumérica
+
+
+## [0.0.9]pre-alpha - 2018-04-12
 Versión de prueba disponible [rtcm-app.geowe.org](http://rtcm-app.geowe.org).
+
+### Añadido
+- Implementación multisala. Los colaboradores se conectan a salas independientes para editar
+- Se genera y muestra la url a compartir (al pulsar en compartir). También puede verse desde el sidebar (al pulsar en conectado).
+- El usuario se reconecta usando el mismo nick que tenía. Cuando pulsa en Desconectar-Reconectar.
+- Reconexión automática con el mismo nick cuando se desconecta por algún error en la red y se ha desconectado del socket.
+- Herramienta de información alfanumérica.
+
+### Correcciones
+- issues: #7, #27, #28, #29, #30
+
+
+## [0.0.6]pre-alpha - 2018-04-12
 
 ### Correcciones
 - Geolocalización usando OSM Nominatim. Cambio de posición de la búsqueda y correcciones
