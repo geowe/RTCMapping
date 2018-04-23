@@ -9,7 +9,7 @@ En desarrollo
 - Edición alfanumérica
 
 
-## [0.0.9]pre-alpha - 2018-04-12
+## [0.0.9]pre-alpha - 2018-04-23
 Versión de prueba disponible [rtcm-app.geowe.org](http://rtcm-app.geowe.org).
 
 ### Añadido
