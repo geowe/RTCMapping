@@ -3,7 +3,7 @@
 
 [Demo version](http://rtcm-app.geowe.org)
 
-
+![Screenshot](https://github.com/geowe/RTCMapping/blob/master/rtcm-mapeo-colaborativo.gif)
 
 ## Objetivo
 El objetivo principal es obtener un sistema en el que se refleje la funcionalidad base para poder realizar ediciones de información espacial, tanto en su componente espacial como alfanumérica, por varios usuarios en tiempo real, desde distintos dispositivos.
