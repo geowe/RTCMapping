@@ -18,3 +18,6 @@ El objetivo principal es obtener un sistema en el que se refleje la funcionalida
 - Código fuente: Se pueden enviar PR, que tras validarlas se incorporarán.
 - Testing: me parecen fundamentales. Si quieres hacer pruebas de rendimiento, estabilidad, carga, etc. ¡Genial!
 - Documentación y difusión.
+
+## Estado del proyecto
+Este proyecto se encuentra finalizado para la versión de demostración o prueba de concepto. El equipo de GeoWE está trabajando en los próximos avances del mapeo colaborativo en tiempo real.
