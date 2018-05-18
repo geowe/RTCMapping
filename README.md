@@ -1,5 +1,7 @@
 # RTCMapping
-Real-Time Collaborative Mapping se entiende como un sistema en el que se facilitará la edición (creación/modificación) de información espacial vectorial, fomentando la colaboración (por parte de un grupo de usuarios) en tiempo real, de manera que un usuario pueda ver lo que otros están editando en cada momento.
+[Real-Time Collaborative Mapping](http://rtcm.geowe.org) se entiende como un sistema en el que se facilitará la edición (creación/modificación) de información espacial vectorial, fomentando la colaboración (por parte de un grupo de usuarios) en tiempo real, de manera que un usuario pueda ver lo que otros están editando en cada momento.
+
+[Demo version](http://rtcm-app.geowe.org)
 
 
 
