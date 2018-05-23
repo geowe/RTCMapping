@@ -1,1 +1,0 @@
-Gif animados
