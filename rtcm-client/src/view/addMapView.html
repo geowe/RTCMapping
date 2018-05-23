@@ -1,0 +1,29 @@
+<div id="addMapsView" class="w3-container">
+    
+    <div class="w3-row">
+      <a href="#" id="filecheck">          
+        <div id="filetab" class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding w3-border-blue">Archivo</div>
+      </a>
+      <a href="#" id="urlcheck">
+        <div  id="urltab" class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding">Url</div>
+      </a>    
+    </div>   
+   
+    <p>
+      <div id="fileTabContent" >
+          <p>Importa datos en tu mapa.<br><font size ="2">Debe ser en formato Geojson y con proyección WGS84</font><br>
+          <input id="fileInput" class="w3-input w3-hover-blue w3-border w3-round-large w3-border-blue" type="file" placeholder="">
+          </p>
+      </div>
+      <div id="urlTabContent" style="display:none">
+          <p>Importa datos en tu mapa.<br><font size ="2">Debe ser en formato Geojson y con proyección WGS84</font><br>
+          <input id="urlInput" class="w3-input w3-hover-blue w3-border w3-round-large w3-border-blue" type="text" placeholder="introduce una url">
+        </p>
+      </div>
+      
+    </p>
+    <p>
+      <input id="shareLoadedMap" class="w3-check" type="checkbox" checked="checked">
+      <label>Compartir automáticamente</label>
+    </p>
+</div>
