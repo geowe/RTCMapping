@@ -12,27 +12,31 @@ import ol from 'ol/index';
  * @api
  */
 var ZoomToExtentTool = function(options) {
-  
-  this.id = options.id;
-  this.vectorSource = options.vectorSource; 
 
-  BaseTool.call(this, { 
-    id: this.id,
-    controls: []
-  });
+    this.id = options.id;
+    this.vectorSource = options.vectorSource;
+    this.defaultExtent = options.defaultExtent;
+
+    BaseTool.call(this, {
+        id: this.id,
+        controls: []
+    });
 
 };
 
 ol.inherits(ZoomToExtentTool, BaseTool);
 
 
-ZoomToExtentTool.prototype.handle_ = function() {  
-  var map = this.getMap();
-  var view = map.getView();  
-  var extent = (this.vectorSource !== undefined) ? this.vectorSource.getExtent() : view.getProjection().getExtent(); 
-  var size = map.getSize();
-  view.fit(extent, size);
-}
-  
+ZoomToExtentTool.prototype.handle_ = function() {
+    var map = this.getMap();
+    var view = map.getView();
+    var elements = this.vectorSource.getFeatures().length;
 
-export default ZoomToExtentTool;  
+    var extent = (elements != 0) ? this.vectorSource.getExtent() : this.defaultExtent; //view.getProjection().getExtent()
+    var size = map.getSize();
+    //view.fit(extent, size);
+    view.fit(extent, { size: size, maxZoom: 17 });
+}
+
+
+export default ZoomToExtentTool;

@@ -16,67 +16,91 @@ import { RteOperation } from "../RteOperation";
  * @param {String} options.cursor - Puntero del ratón
  */
 var DrawTool = function(options) {
-  
-  this.id = options.id;
-  this.type = options.type;
-  this.cursor = options.cursor;
-  this.vectorSource = options.vectorSource;
-  this.freeHand = (options.freeHand !== undefined) ? options.freeHand : false;
 
-   this.drawTool = new Draw({
+    this.id = options.id;
+    this.type = options.type;
+    this.cursor = options.cursor;
+    this.vectorSource = options.vectorSource;
+    this.freeHand = (options.freeHand !== undefined) ? options.freeHand : false;
+
+    var this_ = this;
+    this.drawTool = new Draw({
         source: this.vectorSource,
         type: this.type,
-        freehand: this.freeHand        
+        freehand: this.freeHand
     });
 
-   
-  var styleFactory = new StyleFactory();  
-  
-  this.drawTool.on('drawend', function(e) {
+
+    var styleFactory = new StyleFactory();
+
+    this.drawTool.on('drawend', function(e) {
+
+        var currentFeature = e.feature;
+        currentFeature.setId('not-shared_' + Date.now());
+        currentFeature.setProperties({ 'nick': 'no-nick', 'shared': false });
+
+        this.rte = this.getAppContext().getRte();
+        if (this.rte.isConnected()) {
+            var nick = this.getNick();
     
-    var currentFeature = e.feature;
-    currentFeature.setId('not-shared_'+Date.now());
-    currentFeature.setProperties({'nick':'no-nick', 'shared':false});
-    this.rte = this.getAppContext().getRte();
-    if(this.rte.isConnected()) {         
-      var nick = this.getNick();  
-      currentFeature.setId(nick+'_'+Date.now());      
-      currentFeature.setProperties({'nick':nick, 'shared':true});
-      currentFeature.set('modified',false,true);
+            //Propiedades de control
+            currentFeature.setId(nick + '_' + Date.now());
+            currentFeature.setProperties({ 'nick': nick, 'shared': true });
+            currentFeature.set('modified', false, true);            
 
-      var style = styleFactory.getShareStyle({strokeColor: "green", pointFillColor: "green", nick: nick});
-      var selecTool = this.getAppContext().getTool('selectTool');
-      currentFeature.setStyle(styleFactory.selectableStyle(style, selecTool.getFeatures()));
+            var style = styleFactory.getShareStyle({ strokeColor: "green", pointFillColor: "green", nick: nick });
+            var selecTool = this.getAppContext().getTool('selectTool');
+            currentFeature.setStyle(styleFactory.selectableStyle([styleFactory.getShadowStyle(), style], selecTool.getFeatures()));
 
-      var olFormat = new GeoJSON(); 
-      var geojson = olFormat.writeFeature(currentFeature);
+            var olFormat = new GeoJSON();
+            var geojson = olFormat.writeFeature(currentFeature);
 
-      this.rte.emit(RteOperation.DRAW, geojson);
-    }
-    e.feature.on('change', function(e){           
-      e.target.set('modified',true,true);      
-    }, this)
+            this.rte.emit(RteOperation.DRAW, geojson);
+        }
 
-  },this);
-  
+        //Rellenamos el resto de propiedades definidas por el usuario
+        this.fillFeatureProperties(currentFeature);
 
-  this.drawTool.setActive(false);
+        e.feature.on('change', function(e) {
+            e.target.set('modified', true, true);
+        }, this)
 
-  this.snap = new Snap({source: this.vectorSource});
-  this.snap.setActive(false);
+    }, this);
 
-   BaseTool.call(this, {    
-         
-      id: this.id,      
-      cursor: this.cursor,      
-      defaultTool: false,
-      controls: [this.drawTool, this.snap]
+    this.vectorSource.on('addfeature', function(e) {
+        var infoTool = this_.getAppContext().getTool("infoTool");
+        infoTool.updateGrid();
+    });
 
-    });    
+    this.drawTool.setActive(false);
+
+    this.snap = new Snap({ source: this.vectorSource });
+    this.snap.setActive(false);
+
+    BaseTool.call(this, {
+
+        id: this.id,
+        cursor: this.cursor,
+        defaultTool: false,
+        controls: [this.drawTool, this.snap]
+
+    });
 };
-
 
 ol.inherits(DrawTool, BaseTool);
 
+DrawTool.prototype.fillFeatureProperties = function(feature) {
+    var featureGrid = this.getAppContext().getTool("infoTool").getGrid();
+    var columns = featureGrid.getColumns();
+    
+    columns.forEach(function(column) { 
+        if(column.getField() != featureGrid.getIdColumn() 
+            && column.getField() != 'nick' 
+            && column.getField() != 'shared') {
+                
+            feature.set(column.getField(), "", true);
+        }
+    });
+}
+
 export default DrawTool;
-  
