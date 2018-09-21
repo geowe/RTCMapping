@@ -22,64 +22,75 @@ import StyleFactory from '../factory/StyleFactory';
  * @api
  */
 var SelectTool = function(options) {
-  
-  this.id = options.id;
-  this.cursor = options.cursor; 
 
-  var selectStyle = new StyleFactory().selectStyle();
-  
-  this.selectClick = new Select({
+    this.id = options.id;
+    this.cursor = options.cursor;
+    this.vectorSource = options.vectorSource;
+    var this_ = this;
+    var selectStyle = new StyleFactory().selectStyle();
+
+    this.selectClick = new Select({
         condition: condition.click,
         style: selectStyle
-      });
-  this.selectClick.setActive(false);  
+    });
 
-  this.dragBox = new DragBox({        
+
+    /*this.selectClick.on('select', function(e) {
+
+        this_.vectorSource.dispatchEvent('change');
+
+    });*/
+
+    this.selectClick.setActive(false);
+
+    this.dragBox = new DragBox({
         condition: condition.primaryAction
-      });
+    });
 
-  var selectedFeatures = this.selectClick.getFeatures();
-  this.dragBox.on('boxend', function() {
-       
+    var selectedFeatures = this.selectClick.getFeatures();
+    this.dragBox.on('boxend', function() {
+
         var extent = this.getGeometry().getExtent();
 
         this.getMap().getLayers().forEach(function(layer) {
-            
-          if(layer instanceof Vector) {
-                
+
+            if (layer instanceof Vector) {
+
                 layer.getSource().forEachFeatureIntersectingExtent(extent, function(feature) {
-                  selectedFeatures.push(feature);
+                    selectedFeatures.push(feature);
                 });
-          }
+            }
 
-        });      
+        });
     });
-     
-  this.dragBox.on('boxstart', function() {
-        selectedFeatures.clear();
-  });
-  this.dragBox.setActive(false);
-  
-  
-  BaseTool.call(this, {    
-    
-    id: this.id,   
-    cursor: this.cursor,  
-    controls: [this.selectClick, this.dragBox]    
 
-  });
+
+
+    this.dragBox.on('boxstart', function() {
+        selectedFeatures.clear();
+    });
+    this.dragBox.setActive(false);
+
+
+    BaseTool.call(this, {
+
+        id: this.id,
+        cursor: this.cursor,
+        controls: [this.selectClick, this.dragBox]
+
+    });
 
 };
 
 ol.inherits(SelectTool, BaseTool);
-  
-SelectTool.prototype.setActive = function(enabled) {  
-  BaseTool.prototype.setActive.call(this, enabled);
-  this.selectClick.getFeatures().clear();
-}  
 
-SelectTool.prototype.getFeatures = function() {    
-  return this.selectClick.getFeatures();
+SelectTool.prototype.setActive = function(enabled) {
+    BaseTool.prototype.setActive.call(this, enabled);
+    this.selectClick.getFeatures().clear();
+}
+
+SelectTool.prototype.getFeatures = function() {
+    return this.selectClick.getFeatures();
 }
 
 

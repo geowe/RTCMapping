@@ -1,153 +1,163 @@
+<body>
 
-<body>    
+    <div id="rtcm-overlay"></div>
+    <!-- sidebar -->
+    <div id="sidebar" class="w3-sidebar w3-bar-block w3-dark-white w3-animate-left w3-card" style="display:none">
+        <div class="bar-item w3-theme side-background">
+            <a href="http://www.geowe.org" target="_blank"><img class="w3-circle" src="geowe-logo-cuadrado.jpg" style="height:50px;"></a>
+            <a id="closeSidebarBtn" href="#" class="w3-right"><i class="icon-cancel" style="font-size:x-large"></i></a>
+            <div>
+                <p>RTCMapping <label class="w3-tiny"> by GeoWE</label> <br> <label class="w3-tiny w3-opacity">Demo Version - 1.1</label></p>
 
-<div id="rtcm-overlay"></div>
-<!-- sidebar -->
-<div id="sidebar" class="w3-sidebar w3-bar-block w3-dark-white w3-animate-left w3-card" style="display:none">
-    <div class="bar-item w3-theme side-background">
-        <a href="http://www.geowe.org" target="_blank"><img class="w3-circle" src="geowe-logo-cuadrado.jpg" style="height:50px;"></a>
-        <a id="closeSidebarBtn" href="#" class="w3-right"><i class="icon-cancel" style="font-size:x-large"></i></a>
-        <div>
-          <p>RTCMapping <label class="w3-tiny"> by GeoWE</label> <br> <label class="w3-tiny w3-opacity">Demo Version</label></p>
-       
+            </div>
         </div>
-     </div>
-    <a id="statusLabel" href="#" class="w3-bar-item w3-button w3-opacity">No conectado</a>
-    <a id="colaboratorsLabel" href="#" class="w3-bar-item w3-button w3-opacity"><i class="icon-group"></i> Conectados: 0</a>
-    
-  
-    <div id="mapLoadedDivd" class="w3-bar-item w3-border-top w3-margin-top"> 
-      <i> Mapas</i>
+        <a id="statusLabel" href="#" class="w3-bar-item w3-button w3-opacity">No conectado</a>
+        <a id="colaboratorsLabel" href="#" class="w3-bar-item w3-button w3-opacity"><i class="icon-group"></i> Conectados: 0</a>
+        <a id="findMe" href="#" class="w3-bar-item w3-button w3-opacity"><i class="icon-location-searching"></i> Dónde estoy</a>
+
+
+        <div id="mapLoadedDivd" class="w3-bar-item w3-border-top w3-margin-top">
+            <i> Mapas</i>
+        </div>
+        <!-- CONTENIDO PARA EL MVP-->
+        <div class="w3-bar-item w3-margin-bottom">
+            <a href="#" id="showHideMyMapBtn" class="w3-hover-opacity" title="hide/show"><i class="ms ms-search-eye"></i></a>
+            <label class="w3-display-middlerigth"> Mapa</label>
+        </div>
+
+        <div class="w3-bar-item w3-margin-bottom ">
+            <a href="#" id="showHideOSMBtn" class="w3-hover-opacity" title="hide/show"><i class="ms ms-search-eye"></i></a>
+            <label class="w3-display-middlerigth"> OSM</label>
+        </div>
+
+        <div class="w3-bar-item w3-margin-bottom ">
+            <a href="#" id="showHideBingMapBtn" class="w3-hover-opacity" style="opacity:0.3" title="hide/show"><i class="ms ms-search-eye"></i></a>
+            <label class="w3-display-middlerigth"> Bing Map</label>
+        </div>
+
+        <div class="w3-bar-item w3-margin-bottom ">
+            <a href="#" id="showHideCatastroBtn" class="w3-hover-opacity" style="opacity:0.3" title="hide/show"><i class="ms ms-search-eye"></i></a>
+            <label class="w3-display-middlerigth"> Catastro ES</label>
+        </div>
+        <!-- FIN CONTENIDO PARA EL MVP -->
+
+        <a id="addMaps" href="#" class="w3-bar-item w3-button w3-border-top"><i class="ms ms-catalog"></i> Añadir  Mapas</a>
+        <a id="downloadMap" href="#" class="w3-bar-item w3-button w3-border-top" download="rtc-layer-wgs84.geojson"><i class="icon-file-download"></i> Descargar</a>
+        <a href="https://github.com/geowe/RTCMapping/wiki" target="_blank" class="w3-bar-item w3-button"><i class="icon-help"></i> Ayuda</a>
+        <a href="http://www.geowe.org/index.php?id=contacto" target="_blank" class="w3-bar-item w3-button"><i class="icon-info-outline"></i> Contacto</a>
+        <a href="http://www.geowe.org/index.php?id=termsOfUse" target="_blank" class="w3-bar-item w3-button"><i class="icon-drive-document"></i> Condiciones de uso</a>
+
     </div>
-    <!-- CONTENIDO PARA EL MVP-->
-    <div class="w3-bar-item w3-margin-bottom">
-      <a href="#" id="showHideMyMapBtn" class="w3-hover-opacity" title="hide/show"><i class="ms ms-search-eye"></i></a>      
-      <label class="w3-display-middlerigth"> Mapa</label>
-    </div>
-  
-    <div class="w3-bar-item w3-margin-bottom ">
-      <a href="#" id="showHideOSMBtn" class="w3-hover-opacity" title="hide/show"><i class="ms ms-search-eye"></i></a>      
-      <label class="w3-display-middlerigth"> OSM</label>
-    </div>
 
-    <div class="w3-bar-item w3-margin-bottom ">
-      <a href="#" id="showHideBingMapBtn" class="w3-hover-opacity" style="opacity:0.3" title="hide/show"><i class="ms ms-search-eye"></i></a>      
-      <label class="w3-display-middlerigth"> Bing Map</label>
+    <!-- fin sideBar -->
+
+
+
+
+    <div id="fullscreen" class="fullscreen">
+        <div id="map" class="map"></div>
     </div>
 
-    <div class="w3-bar-item w3-margin-bottom ">
-      <a href="#" id="showHideCatastroBtn" class="w3-hover-opacity" style="opacity:0.3" title="hide/show"><i class="ms ms-search-eye"></i></a>      
-      <label class="w3-display-middlerigth"> Catastro ES</label>
+
+
+    <div class="header">
+
+        <div class="w3-bar w3-padding w3-theme-d2">
+            <div class="w3-bar">
+                <button id="mainMenuBtn" class="w3-bar-item w3-button"><i class="icon-menu"></i></button>
+                <input id="docTitle" type="text" class="w3-bar-item" style="width:50%" placeholder="Mapa sin título" autofocus>
+                <button id="shareTool-mobile" class="w3-circle w3-bar-item w3-theme-d2 w3-right w3-hide-medium w3-hide-large"><i class="icon-group-add"></i></button>
+                <button id="shareTool-desktop" class="w3-btn w3-bar-item w3-border w3-round-large w3-theme-d2 w3-margin-left w3-hide-small" title="Comparte este mapa"><i class="icon-group-add"></i> Compartir</button>
+                <a href="http://rtcm.geowe.org" target="_blank" class="w3-bar-item w3-button w3-right w3-hide-small"><img class=" w3-circle" src="rtcm-logo.png" style="height: 40px; width: 40px;"></a>
+
+            </div>
+        </div>
+
+
+        <!-- HERRAMIENTAS -->
+        <div class="w3-bar w3-theme">
+            <button id="panTool" class="w3-button w3-theme w3-left" title="Pan"><i class="ms ms-pan-hand"></i></button>
+            <button id="selectTool" class="w3-button w3-theme w3-left" title="Selección"><i class="ms ms-select-arrow"></i></button>
+            <button id="zoomToExtentTool" class="w3-button w3-theme w3-left" title="Zoom a toda la capa"><i class="ms ms-zoom-to-extent"></i></button>
+            <button id="zoomInTool" class="w3-button w3-theme w3-left" title="Zoom In"><i class="ms ms-zoom-in"></i></button>
+            <button id="zoomOutTool" class="w3-button w3-theme w3-left" title="Zoom Out"><i class="ms ms-zoom-out"></i></button>
+            <button id="infoTool" class="w3-button w3-theme" title="Info"><i class="ms ms-table"></i></button>
+            <button id="deleteTool" class="w3-button w3-theme" title="Eliminar"><i class="icon-delete" ></i></button>
+            <!--HERRAMIENTAS DE MEDIR-->
+            <div class="w3-dropdown-hover w3-small w3-left">
+                <button class="w3-button w3-theme w3-hide-large w3-hide-medium"><i class="icon-straighten"></i><i class="icon-more-vertical"></i></button>
+                <button class="w3-button w3-theme w3-hide-small">Medir <i class="icon-more-vertical"></i></button>
+                <div class="w3-dropdown-content w3-bar-block w3-border w3-theme">
+                    <button id="measurePolygonTool" class="w3-button w3-theme" title="Área"><i class="ms ms-measure-area"></i></button>
+                    <button id="measureDistanceTool" class="w3-button w3-theme" title="Distancia"><i class="icon-straighten"></i></button>
+                </div>
+            </div>
+            <!--HERRAMIENTAS DE DIBUJO-->
+            <div class="w3-dropdown-hover w3-small w3-left">
+                <button class="w3-button w3-theme w3-hide-large w3-hide-medium"><i class="ms ms-draw-extent"></i><i class="icon-more-vertical"></i></button>
+                <button class="w3-button w3-theme w3-hide-small">Dibujo <i class="icon-more-vertical"></i></button>
+                <div class="w3-dropdown-content w3-bar-block w3-border w3-theme">
+                    <button id="drawPointTool" class="w3-button w3-theme" title="Punto"><i class="icon-brightness-1"></i></button>
+                    <button id="drawLineTool" class="w3-button w3-theme" title="Línea"><i class="icon-remove"></i></button>
+                    <button id="drawPolygonTool" class="w3-button w3-theme" title="Polígono"><i class="icon-crop-landscape"></i></button>
+                    <button id="freeDrawLineTool" class="w3-button w3-theme" title="Dibujar línea libre"><i class="icon-gesture"></i></button>
+                    <button id="freeDrawPolygonTool" class="w3-button w3-theme" title="Dibujar polígono libre"><i class="ms ms-draw-extent"></i></button>
+                </div>
+            </div>
+            <!--HERRAMIENTAS DE MODIFICAR-->
+            <div class="w3-dropdown-hover w3-small w3-left">
+                <button class="w3-button w3-theme w3-hide-large w3-hide-medium"><i class="ms ms-dashed-stroke"></i><i class="icon-more-vertical"></i></button>
+                <button class="w3-button w3-theme w3-hide-small">Modificar <i class="icon-more-vertical"></i></button>
+                <div class="w3-dropdown-content w3-bar-block w3-border w3-theme">
+                    <button id="modifyTool" class="w3-button w3-theme" title="Modificar geometría"><i class="ms ms-dashed-stroke"></i></button>
+                    <button id="bufferTool" class="w3-button w3-theme" title="Aplicar Buffer"><i class="ms ms-buffer"></i></button>
+                </div>
+            </div>
+
+
+        </div>
+
     </div>
-    <!-- FIN CONTENIDO PARA EL MVP -->
-    
-    <a id="addMaps" href="#" class="w3-bar-item w3-button w3-border-top"><i class="ms ms-catalog"></i> Añadir  Mapas</a>
-    <a id="downloadMap" href="#" class="w3-bar-item w3-button w3-border-top" download="rtc-layer-wgs84.geojson"><i class="icon-file-download"></i> Descargar</a>
-    <a href="https://github.com/geowe/RTCMapping/wiki" target="_blank" class="w3-bar-item w3-button"><i class="icon-help"></i> Ayuda</a>
-    <a href="http://www.geowe.org/index.php?id=contacto" target="_blank" class="w3-bar-item w3-button"><i class="icon-info-outline"></i> Contacto</a>
-    <a href="http://www.geowe.org/index.php?id=termsOfUse" target="_blank" class="w3-bar-item w3-button"><i class="icon-drive-document"></i> Condiciones de uso</a>
-    
-</div> 
 
-  <!-- fin sideBar -->     
+    <div id="footer" class="footer w3-bar w3-theme-d3">
+        <input id="searchInput" class="searchInput" type="text" onfocus="this.value=''" placeholder="Geolocalizar..." title="OSM Nominatim">
 
-
-
-  
-<div id="fullscreen" class="fullscreen">
-     <div id="map" class="map"></div>                     
-</div>     
-  
-   
-
-<div class="header">
-
-  <div class="w3-bar w3-padding w3-theme-d2">    
-      <div class="w3-bar">
-        <button id="mainMenuBtn" class="w3-bar-item w3-button"><i class="icon-menu"></i></button>        
-        <input id="docTitle" type="text" class="w3-bar-item" style="width:50%" placeholder="Mapa sin título" autofocus>
-        <button id="shareTool-mobile" class="w3-circle w3-bar-item w3-theme-d2 w3-right w3-hide-medium w3-hide-large"><i class="icon-group-add"></i></button>
-        <button id="shareTool-desktop" class="w3-btn w3-bar-item w3-border w3-round-large w3-theme-d2 w3-margin-left w3-hide-small" title="Comparte este mapa"><i class="icon-group-add"></i> Compartir</button>
-        <a href="http://rtcm.geowe.org" target="_blank" class="w3-bar-item w3-button w3-right w3-hide-small"><img class=" w3-circle" src="rtcm-logo.png" style="height: 40px; width: 40px;"></a>
-        
-      </div>    
-  </div>
-
-
-  <!-- HERRAMIENTAS -->
-  <div class="w3-bar w3-theme">
-    <button id="panTool" class="w3-button w3-theme w3-left" title="Pan"><i class="ms ms-pan-hand"></i></button>
-    <button id="selectTool" class="w3-button w3-theme w3-left" title="Selección"><i class="ms ms-select-arrow"></i></button>
-    <button id="zoomToExtentTool" class="w3-button w3-theme w3-left" title="Zoom a toda la capa"><i class="ms ms-zoom-to-extent"></i></button>
-    <button id="infoTool" class="w3-button w3-theme" title="Info"><i class="icon-info"></i></button>   
-    <button id="deleteTool" class="w3-button w3-theme" title="Eliminar"><i class="icon-delete" ></i></button>
-    <!--HERRAMIENTAS DE MEDIR-->
-    <div class="w3-dropdown-hover w3-small w3-left">
-        <button class="w3-button w3-theme w3-hide-large w3-hide-medium"><i class="icon-straighten"></i><i class="icon-more-vertical"></i></button>
-        <button class="w3-button w3-theme w3-hide-small">Medir <i class="icon-more-vertical"></i></button>
-        <div class="w3-dropdown-content w3-bar-block w3-border w3-theme" >
-            <button id="measurePolygonTool" class="w3-button w3-theme" title="Área"><i class="ms ms-measure-area"></i></button>
-            <button id="measureDistanceTool" class="w3-button w3-theme" title="Distancia"><i class="icon-straighten"></i></button>
-      </div>
-    </div>
-    <!--HERRAMIENTAS DE DIBUJO-->
-    <div class="w3-dropdown-hover w3-small w3-left">
-        <button class="w3-button w3-theme w3-hide-large w3-hide-medium"><i class="ms ms-draw-extent"></i><i class="icon-more-vertical"></i></button>        
-        <button class="w3-button w3-theme w3-hide-small">Dibujo <i class="icon-more-vertical"></i></button>
-        <div class="w3-dropdown-content w3-bar-block w3-border w3-theme" >
-            <button id="drawPointTool" class="w3-button w3-theme" title="Punto"><i class="icon-brightness-1"></i></button>
-            <button id="drawLineTool" class="w3-button w3-theme" title="Línea"><i class="icon-remove"></i></button>
-            <button id="drawPolygonTool" class="w3-button w3-theme" title="Polígono"><i class="icon-crop-landscape"></i></button>
-            <button id="freeDrawLineTool" class="w3-button w3-theme" title="Dibujar línea libre"><i class="icon-gesture"></i></button>
-            <button id="freeDrawPolygonTool" class="w3-button w3-theme" title="Dibujar polígono libre"><i class="ms ms-draw-extent"></i></button>    
+        <div id="counter-mobile" class="w3-display-right w3-hide-large">
+            RTC Mapping
+        </div>
+        <div id="counter-desktop" class="w3-display-right w3-hide-small w3-hide-medium">
+            Real Time Collaborative Mapping
         </div>
     </div>
-    <!--HERRAMIENTAS DE MODIFICAR-->    
-    <div class="w3-dropdown-hover w3-small w3-left">
-        <button class="w3-button w3-theme w3-hide-large w3-hide-medium"><i class="ms ms-dashed-stroke"></i><i class="icon-more-vertical"></i></button>
-        <button class="w3-button w3-theme w3-hide-small">Modificar <i class="icon-more-vertical"></i></button>
-        <div class="w3-dropdown-content w3-bar-block w3-border w3-theme" >
-            <button id="modifyTool" class="w3-button w3-theme" title="Modificar geometría"><i class="ms ms-dashed-stroke"></i></button>    
-            <button id="bufferTool" class="w3-button w3-theme" title="Aplicar Buffer"><i class="ms ms-buffer"></i></button>        
-        </div>
-    </div>       
-      
-    
-  </div>  
-  
-</div>
 
-<div id="footer" class="footer w3-bar w3-theme-d3">
-  <input id="searchInput" class="searchInput" type="text" onfocus="this.value=''" placeholder="Geolocalizar..." title="OSM Nominatim">  
-  
-  <div id="counter-mobile" class="w3-display-right w3-hide-large">  	
-    RTC Mapping
-  </div>
-  <div id="counter-desktop" class="w3-display-right w3-hide-small w3-hide-medium">  	
-    Real Time Collaborative Mapping
-  </div>  
-</div>
+    <div id="feature-grid-panel" class="w3-panel" style="display:none">
+        <div id="feature-grid-container" class="footer w3-card-4 w3-animate-bottom">
+            <!--style="max-width:1024px"-->
+            <header class="w3-container w3-theme">
+                <span onclick="document.getElementById('feature-grid-panel').style.display = 'none'" ; class="w3-button w3-display-topright"><i class="icon-cancel" style="font-size:large"></i></span>
+                <div id="feature-grid-panel-title" class="w3-button">
+                    <i class="ms ms-table" style="vertical-align: middle"></i> Listado de elementos [<label id="numElements"></label>]
+                </div>
+            </header>
 
-<div id="feature-grid-panel" class="w3-panel" style="display:none">
-  <div id="feature-grid-container" class="footer w3-card-4 w3-animate-bottom" ><!--style="max-width:1024px"-->
-    <header class="w3-container w3-theme">       
-      <span onclick="document.getElementById('feature-grid-panel').style.display = 'none'"; 
-      class="w3-button w3-display-topright"><i class="icon-cancel" style="font-size:x-large"></i></span>
-      <h4> <div id="feature-grid-panel-title" > Listado de elementos </div></h4> <!-- style="font-weight: bold;"-->
-    </header>
+            <div class="w3-container w3-white">
+                <p>
+                    <div id="feature-grid" class="w3-tiny"></div>
+                </p>
+            </div>
 
-    <div class="w3-container w3-white" >
-      <p><div id="feature-grid"></div></p>
-    </div>
-
-    <footer id="feature-grid-panel-footer" class="w3-container w3-light-grey w3-padding">
-        <button id="newAttributeTool" class="w3-button w3-theme" title="Añadir atributo">
-          <i class="icon-control-point" style="vertical-align: text-bottom"></i> Nuevo atributo
+            <footer id="feature-grid-panel-footer">
+                <div id="feature-grid-toolbar" class="w3-bar w3-light-grey w3-small">
+                    <button id="zoomToSelectedTool" class="w3-bar-item w3-button w3-theme w3-border-right" title="Zoom al elemento seleccionado">
+                <i class="ms ms-zoom" style="font-size:large;vertical-align: middle"></i> Zoom
         </button>
-    </footer>
-  </div>
-</div>
+                    <button id="newAttributeTool" class="w3-bar-item w3-button w3-theme" title="Añadir atributo">
+            <i class="icon-control-point" style="vertical-align: middle"></i> Nuevo atributo
+        </button>
+                </div>
+            </footer>
+        </div>
+    </div>
 
-<div id="snackbar">Some text some message..</div>
+    <div id="snackbar" class="w3-small">Some text some message..</div>
 </body>
-
