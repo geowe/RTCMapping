@@ -15,6 +15,7 @@ import proj from 'ol/proj';
 import AddMapsTool from './tool/AddMapsTool';
 import Rte from './RealTimeEngine';
 import GeoLocationTool from './tool/GeoLocationTool';
+import ToolTipTool from './tool/ToolTipTool';
 
 /**
  * @classdesc
@@ -69,6 +70,8 @@ AppContext.prototype.initTools = function() {
     this.attachTool(new BufferTool({ id: "bufferTool", vectorSource: this.vector.getSource() }));
     this.attachTool(new OsmNominatimTool({ id: "searchInput", vectorSource: this.vector.getSource() }));
     this.attachTool(new GeoLocationTool({ id: "findMe", vectorSource: this.vector.getSource() }));
+    this.attachTool(new ToolTipTool({ id: "toolTipTool", cursor: "crosshair", vectorSource: this.vector.getSource() }));
+    
     new AddMapsTool(this.map, this.vector.getSource(), this);
 
 }
