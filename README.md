@@ -23,3 +23,13 @@ El objetivo principal es obtener un sistema en el que se refleje la funcionalida
 
 ## Estado del proyecto
 Este proyecto se encuentra finalizado para la versión de demostración o prueba de concepto. El equipo de GeoWE está trabajando en los próximos avances del mapeo colaborativo en tiempo real.
+
+## Configuración del proyecto
+
+RTCMapping es una aplicación NodeJS (por lo que deberá tener instalado NodeJS en su máquina) y como tal, el procedimiento de instalación y configuración es el estándar para este tipo de proyectos. Los pasos para preparar la arquitectura son los siguientes:
+
+1.- En el **lado cliente** deberá cambiar la dirección IP donde se conectará al servidor. Localice en el proyecto el fichero **RealTimeEngine** y en el método **connect** especifique la url de conexión.
+
+2.- Para iniciar el proyecto cliente, deberá ejecutar (desde la consola) **npm install** y automáticamente se instalarán todas las dependencias especificadas en el fichero **package.json**, generando la carpeta **node_modules**. Una vez llegue aquí, podrá continuar la vía de desarrollo ejecutando **npm run start** y se levantará un servidor para entorno de desarrollo con la aplicación cliente en ejecución. Si desea generar el proyecto para despliegue ejecute **npm run build**.
+
+3.- En el **lado servidor** deberá ejecutar el comando **node ./src/index.js** y se levantará el servidor a la escucha en el puerto especificado (por defecto es el puerto **3000**).

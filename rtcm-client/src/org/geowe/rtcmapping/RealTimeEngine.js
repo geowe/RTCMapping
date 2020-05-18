@@ -37,9 +37,9 @@ RealTimeEngine.prototype.isConnected = function() {
 /**
  * Conecta el motor en tiempo real para enviar y recibir mensajes de los colaboradores
  */
-RealTimeEngine.prototype.connect = function() {
-    this.socket = io('http://130.211.114.104:8080/rtcm'); //Google
-    //this.socket = io('http://127.0.0.1:3000/rtcm');    
+RealTimeEngine.prototype.connect = function() {    
+    //Especificar la ip y puerto del servidor
+    this.socket = io('http://127.0.0.1:3000/rtcm');    
     this.listen();
 }
 

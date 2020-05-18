@@ -81,7 +81,7 @@ var bingMapLayer = new Tile({
     visible: false,
     preload: Infinity,
     source: new BingMaps({
-        key: 'AnydWgEpsZNW2AvlZAaGsiRokwGCPBmcTE0wM5U8J7et46Tmh0pvYj9mNkUMGVby',
+        key: 'YOUR KEY HERE',
         imagerySet: 'Aerial'
     })
 });
