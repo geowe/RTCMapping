@@ -51,15 +51,12 @@ var ToolTipTool = function(options) {
             this_.popup.setPosition(undefined);
         }else{
             //TODO: CREAR EL HTML PARA EL POPUP
-            //TODO: REVISAR QUE LA PRIMERA DA ERROR
             this_.popup.setPosition(coordinate);
-            console.log(e.selected[0].get('nick'));
-            element.innerHTML = '<a href="http://4.bp.blogspot.com/-4GieGxD2VjQ/U9OO6Y8h1DI/AAAAAAABHSU/oVIbx8JHAmI/s1600/49984125.jpg" target="_blank">'
-            +'<img src="http://4.bp.blogspot.com/-4GieGxD2VjQ/U9OO6Y8h1DI/AAAAAAABHSU/oVIbx8JHAmI/s1600/49984125.jpg" alt="Mezquita" width="95%" height="auto"></a>'
-            +'<div class="w3-container w3-center"> <p>Mezquita de Córdoba</p></div>';
-            /*'<p><img src="http://4.bp.blogspot.com/-4GieGxD2VjQ/U9OO6Y8h1DI/AAAAAAABHSU/oVIbx8JHAmI/s1600/49984125.jpg" alt="Girl in a jacket" width="50" height="100"><br>'+e.selected[0].get('nick')+
-            '<br>'+e.selected[0].get('shared')+'</p>';*/
-
+           
+            var feature = e.selected[0];
+            var imgHTML = ToolTipTool.prototype.getImgHtml.call(this_,feature);
+            var contentHTML = ToolTipTool.prototype.getContentHtml.call(this_,feature);
+            element.innerHTML = imgHTML + contentHTML;
             
         }
         ///
@@ -67,9 +64,6 @@ var ToolTipTool = function(options) {
         ToolTipTool.prototype.confirmFeatures.call(this_, e.selected, this_.vectorSource, this_.getMap());
         
     });
-
-   
-
    
     BaseTool.call(this, {
         id: this.id,
@@ -86,8 +80,32 @@ ToolTipTool.prototype.clearSelectedFeatures = function() {
     this.selectClick.getFeatures().clear();
     if(this.popup){
         this.popup.setPosition(undefined);
+    }    
+}
+
+ToolTipTool.prototype.getImgHtml = function(feature) {
+    var imgElement = '';
+    if(feature.get('img-url')){
+        imgElement = '<a href="'+feature.get('img-url')+'" target="_blank">'
+        +'<img src="'+feature.get('img-url')+'" width="95%" height="auto"></a>'
     }
+    return imgElement;    
+}
+
+ToolTipTool.prototype.getContentHtml = function(feature) {
+    var propKey = feature.getKeys();
     
+    var contentElement = '<div class="w3-container w3-center">';
+    propKey.forEach(function(p){
+        if(p !== 'geometry' && p !== 'shared' 
+            && p !== 'nick' && p !== 'img-url'){
+            contentElement +=  '<p class="w3-small">'+feature.get(p)+'</p>';
+        }
+        
+    });
+    contentElement += '</div>';
+    
+    return contentElement;    
 }
 
 ToolTipTool.prototype.confirmFeatures = function(features, vectorSource, map) {

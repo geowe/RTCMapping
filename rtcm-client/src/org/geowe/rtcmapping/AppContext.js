@@ -61,7 +61,7 @@ AppContext.prototype.initTools = function() {
     this.attachTool(new DrawTool({ id: "freeDrawLineTool", cursor: "cell", type: 'LineString', vectorSource: this.vector.getSource(), freeHand: true }));
     this.attachTool(new DrawTool({ id: "freeDrawPolygonTool", cursor: "cell", type: 'Polygon', vectorSource: this.vector.getSource(), freeHand: true }));
     this.attachTool(new ModifyTool({ id: "modifyTool", cursor: "cell", vectorSource: this.vector.getSource() }));
-    this.attachTool(new SelectTool({ id: "selectTool", cursor: "alias", vectorSource: this.vector.getSource() }));
+    this.attachTool(new SelectTool({ id: "selectTool", cursor: "pointer", vectorSource: this.vector.getSource() }));
     this.attachTool(new MeasureTool({ id: "measurePolygonTool", type: 'Polygon' }));
     this.attachTool(new MeasureTool({ id: "measureDistanceTool", type: 'LineString' }));
     this.attachTool(new DeleteTool({ id: "deleteTool", cursor: "crosshair", vectorSource: this.vector.getSource() }));
@@ -70,7 +70,7 @@ AppContext.prototype.initTools = function() {
     this.attachTool(new BufferTool({ id: "bufferTool", vectorSource: this.vector.getSource() }));
     this.attachTool(new OsmNominatimTool({ id: "searchInput", vectorSource: this.vector.getSource() }));
     this.attachTool(new GeoLocationTool({ id: "findMe", vectorSource: this.vector.getSource() }));
-    this.attachTool(new ToolTipTool({ id: "toolTipTool", cursor: "crosshair", vectorSource: this.vector.getSource() }));
+    this.attachTool(new ToolTipTool({ id: "toolTipTool", cursor: "auto", vectorSource: this.vector.getSource() }));
     
     new AddMapsTool(this.map, this.vector.getSource(), this);
 
