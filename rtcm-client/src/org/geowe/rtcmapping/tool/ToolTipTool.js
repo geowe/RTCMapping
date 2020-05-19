@@ -1,11 +1,7 @@
 import BaseTool from './BaseTool';
-import Map from 'ol/map';
 import ol from 'ol/index';
-
 import Select from 'ol/interaction/select';
-
 import condition from 'ol/events/condition';
-import Vector from 'ol/layer/vector';
 import StyleFactory from '../factory/StyleFactory'
 
 
@@ -36,9 +32,6 @@ var ToolTipTool = function(options) {
 
     this.selectClick.on('select', function(e) {
         
-        //TODO: traer el popup overlay del mapa y mostralo
-        //https://openlayers.org/en/v4.6.5/examples/overlay.html
-        //https://openlayers.org/en/v4.6.5/apidoc/ol.Overlay.html
         var coordinate = e.mapBrowserEvent.coordinate;
         this_.popup = this_.map.getOverlayById('popup');
         
@@ -50,7 +43,6 @@ var ToolTipTool = function(options) {
             console.log('NO HAS PULSADO FEATURE');    
             this_.popup.setPosition(undefined);
         }else{
-            //TODO: CREAR EL HTML PARA EL POPUP
             this_.popup.setPosition(coordinate);
            
             var feature = e.selected[0];
@@ -59,7 +51,7 @@ var ToolTipTool = function(options) {
             element.innerHTML = imgHTML + contentHTML;
             
         }
-        ///
+
         this_.selectedFeatures = e.selectedFeatures;
         ToolTipTool.prototype.confirmFeatures.call(this_, e.selected, this_.vectorSource, this_.getMap());
         
@@ -97,11 +89,12 @@ ToolTipTool.prototype.getContentHtml = function(feature) {
     
     var contentElement = '<div class="w3-container w3-center">';
     propKey.forEach(function(p){
+        console.log(p);
         if(p !== 'geometry' && p !== 'shared' 
-            && p !== 'nick' && p !== 'img-url'){
+            && p !== 'nick' && p !== 'img-url'
+            && p !== 'modified'){
             contentElement +=  '<p class="w3-small">'+feature.get(p)+'</p>';
-        }
-        
+        }        
     });
     contentElement += '</div>';
     
@@ -109,11 +102,9 @@ ToolTipTool.prototype.getContentHtml = function(feature) {
 }
 
 ToolTipTool.prototype.confirmFeatures = function(features, vectorSource, map) {
-
     this.numFeatures = (features.length == undefined ? features.getLength() : features.length);
 
     this.features = features;
-
 }
 
 
