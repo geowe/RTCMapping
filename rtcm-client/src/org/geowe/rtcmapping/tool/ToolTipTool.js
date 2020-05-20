@@ -4,7 +4,6 @@ import Select from 'ol/interaction/select';
 import condition from 'ol/events/condition';
 import StyleFactory from '../factory/StyleFactory'
 
-
 /**
  * @classdesc
  * Herramienta responsable de mostrar el tooltip del elemento del mapa
@@ -39,8 +38,7 @@ var ToolTipTool = function(options) {
             var element = this_.popup.getElement();        
         }
         
-        if(e.selected.length < 1){
-            console.log('NO HAS PULSADO FEATURE');    
+        if(e.selected.length < 1){    
             this_.popup.setPosition(undefined);
         }else{
             this_.popup.setPosition(coordinate);
@@ -49,7 +47,6 @@ var ToolTipTool = function(options) {
             var imgHTML = ToolTipTool.prototype.getImgHtml.call(this_,feature);
             var contentHTML = ToolTipTool.prototype.getContentHtml.call(this_,feature);
             element.innerHTML = imgHTML + contentHTML;
-            
         }
 
         this_.selectedFeatures = e.selectedFeatures;
@@ -103,10 +100,8 @@ ToolTipTool.prototype.getContentHtml = function(feature) {
 
 ToolTipTool.prototype.confirmFeatures = function(features, vectorSource, map) {
     this.numFeatures = (features.length == undefined ? features.getLength() : features.length);
-
     this.features = features;
 }
-
 
 ToolTipTool.prototype.setActive = function(enabled) {
     BaseTool.prototype.setActive.call(this, enabled);

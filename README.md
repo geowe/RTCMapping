@@ -11,7 +11,7 @@ El objetivo principal es obtener un sistema en el que se refleje la funcionalida
 ## Tecnología
 - Nodejs
 - Webpack
-- OpenLayers v4.6.4
+- OpenLayers v4.6.5
 - W3.CSS
 - socket.io
 
