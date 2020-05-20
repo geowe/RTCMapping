@@ -21,6 +21,7 @@ import OSM from 'ol/source/osm';
 import BingMaps from 'ol/source/bingmaps';
 import proj from 'ol/proj';
 import ScaleLine from 'ol/control/scaleline';
+import Overlay from 'ol/overlay';
 
 import AppContext from './org/geowe/rtcmapping/AppContext';
 import StyleFactory from './org/geowe/rtcmapping/factory/StyleFactory';
@@ -31,6 +32,7 @@ import DocumentTitleControl from './org/geowe/rtcmapping/document/DocumentTitleC
 import DocumentDownloadControl from './org/geowe/rtcmapping/document/DocumentDownloadControl';
 import ZoomLevelControl from './org/geowe/rtcmapping/control/ZoomLevelControl';
 import UrlProcessor from './org/geowe/rtcmapping/UrlProcessor';
+
 
 window.addEventListener("beforeunload", function(e) {
     var confirmationMessage = "\o/";
@@ -98,6 +100,12 @@ var catastroLayer = new Tile({
     visible: false
 });
 
+
+// Popup showing the position the user clicked
+var popup = new Overlay({
+    id:'popup',
+    element: document.getElementById('popup')
+    });
 rtcmapping.map = new Map({
 
     target: document.getElementById('map'),
@@ -110,8 +118,10 @@ rtcmapping.map = new Map({
         center: proj.transform([-4.7, 39.02], rtcmapping.sourceProjection, rtcmapping.targetProjection),
         zoom: 6
     }),
-    units: 'm'
+    units: 'm',
+    overlays: [popup]
 });
+
 
 var defaultExtent = rtcmapping.map.getView().calculateExtent(rtcmapping.map.getSize());
 
