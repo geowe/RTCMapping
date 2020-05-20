@@ -74,9 +74,9 @@ ToolTipTool.prototype.clearSelectedFeatures = function() {
 
 ToolTipTool.prototype.getImgHtml = function(feature) {
     var imgElement = '';
-    if(feature.get('img-url')){
-        imgElement = '<a href="'+feature.get('img-url')+'" target="_blank">'
-        +'<img src="'+feature.get('img-url')+'" width="95%" height="auto"></a>'
+    if(feature.get('url-img')){
+        imgElement = '<a href="'+feature.get('url-img')+'" target="_blank">'
+        +'<img src="'+feature.get('url-img')+'" width="95%" height="auto"></a>'
     }
     return imgElement;    
 }
@@ -88,7 +88,7 @@ ToolTipTool.prototype.getContentHtml = function(feature) {
     propKey.forEach(function(p){
         console.log(p);
         if(p !== 'geometry' && p !== 'shared' 
-            && p !== 'nick' && p !== 'img-url'
+            && p !== 'nick' && p !== 'url-img'
             && p !== 'modified'){
             contentElement +=  '<p class="w3-small">'+feature.get(p)+'</p>';
         }        
