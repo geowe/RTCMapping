@@ -76,7 +76,7 @@ ToolTipTool.prototype.getImgHtml = function(feature) {
     var imgElement = '';
     if(feature.get('url-img')){
         imgElement = '<a href="'+feature.get('url-img')+'" target="_blank">'
-        +'<img src="'+feature.get('url-img')+'" width="95%" height="auto"></a>'
+        +'<img src="'+feature.get('url-img')+'" width="200px" height="auto"></a>'
     }
     return imgElement;    
 }
