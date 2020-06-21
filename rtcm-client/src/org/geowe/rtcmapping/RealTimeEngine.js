@@ -160,8 +160,15 @@ RealTimeEngine.prototype.listen = function() {
     });
 
     this.socket.on(RteOperation.NICK, function(data) {
-        if (this_.nick === 'no-nick') {
-            this_.nick = data.nick
+        if (this_.nick === 'no-nick') {            
+            var newNick = prompt("¿Quieres cambiar tu nick?",
+            data.nick); 	
+            if(newNick != null){
+                this_.nick = newNick;
+            }else{
+                this_.nick = data.nick;
+            }
+            
         }
         this_.socket.nick = this_.nick;
 
