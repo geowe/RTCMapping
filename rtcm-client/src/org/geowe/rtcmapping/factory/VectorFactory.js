@@ -13,7 +13,8 @@ VectorFactory.prototype.getEmptyLayer = function(options) {
 	var source = new SourceVector();	
 	var vectorLayer = new Vector({
 		    source: source,
-		    style:style		    
+			style:style,
+			zIndex:4		    
 	});
 
     vectorLayer.set('name', fileName);

@@ -10,6 +10,9 @@ import htmlView from '../../../../view/addMapView.html';
 import axios from 'axios/index';
 import FeatureMapper from '../factory/FeatureMapper';
 import { RteOperation } from "../RteOperation";
+
+import Tile from 'ol/layer/tile';
+import TileWMS from 'ol/source/tilewms';
 /**
  * @classdesc
  * Herramienta responsable de añadir mapas a la aplicación
@@ -63,6 +66,8 @@ AddMapsTool.prototype.showAddMapsDialog = function() {
         document.getElementById('filetab').className += " w3-border-blue";
         document.getElementById('fileTabContent').style.display = 'block';
         document.getElementById('urlTabContent').style.display = 'none';
+        document.getElementById('wmsTabContent').style.display = 'none';
+        document.getElementById('share-check').style.display = 'block';
         this_.mode = 'file';
     }
 
@@ -77,7 +82,25 @@ AddMapsTool.prototype.showAddMapsDialog = function() {
         document.getElementById('urltab').className += " w3-border-blue";
         document.getElementById('fileTabContent').style.display = 'none';
         document.getElementById('urlTabContent').style.display = 'block';
+        document.getElementById('wmsTabContent').style.display = 'none';
+        document.getElementById('share-check').style.display = 'block';
         this_.mode = 'url';
+    }
+
+    this.wmscheck = document.getElementById('wmscheck');
+    wmscheck.onclick = function(event) {
+        //TODO: Extraer método para no repetir  
+        var tablinks = document.getElementsByClassName("tablink");
+        for (var i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" w3-border-blue", "");
+        }
+
+        document.getElementById('wmstab').className += " w3-border-blue";
+        document.getElementById('fileTabContent').style.display = 'none';
+        document.getElementById('urlTabContent').style.display = 'none';
+        document.getElementById('wmsTabContent').style.display = 'block';
+        document.getElementById('share-check').style.display = 'none';
+        this_.mode = 'wms';
     }
 }
 
@@ -100,6 +123,10 @@ AddMapsTool.prototype.aceptar = function() {
         case "url":
             var url = document.getElementById('urlInput').value;
             this.loadUrl(url);
+            break;
+        case "wms":
+            var wmsUrl = document.getElementById('wmsUrlInput').value;            
+            this.loadWMS(wmsUrl);
             break;
         default:
             console.log('no ha seleccionado modo');
@@ -202,6 +229,32 @@ AddMapsTool.prototype.loadUrl = function(url) {
             console.log('ERROR: ' + error);
 
         });
+}
+
+AddMapsTool.prototype.loadWMS = function(url) {
+    //elimino la capa si existe
+    var this_ = this;
+    var layers = this.map.getLayers(); 
+    layers.forEach(function (layer) {
+      if ('customLayer' === layer.get('title')) {         
+          this_.map.removeLayer(layer);
+      }              
+    });  
+    //cargo capa nueva
+    var layerName = document.getElementById('wmsLayerNameInput').value;
+    var wmsLayer = new Tile({
+        title: 'customLayer',
+        source: new TileWMS({            
+            url: url,
+            params: {
+                'LAYERS': layerName                
+            }
+        }),
+        visible: true
+    });        
+    this.map.addLayer(wmsLayer);
+    this.fileUPloadPanel.delete();
+    document.getElementById('customWMS').style.display = 'block';  
 }
 
 AddMapsTool.prototype.emit = function(feature) {
