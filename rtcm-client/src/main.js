@@ -135,7 +135,7 @@ setTimeout(function() {
 }, 200);
 
 //TODO: Podría ir al ToolConfigurator
-var changeMapVisibilityTool = new ChangeMapVisibilityTool(rtcLayer, osmLayer, catastroLayer, bingMapLayer);
+var changeMapVisibilityTool = new ChangeMapVisibilityTool(rtcLayer, osmLayer, catastroLayer, bingMapLayer, rtcmapping.map);
 var sidebar = new Sidebar();
 
 

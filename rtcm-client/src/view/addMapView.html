@@ -6,6 +6,9 @@
       </a>
       <a href="#" id="urlcheck">
         <div  id="urltab" class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding">Url</div>
+      </a>
+      <a href="#" id="wmscheck">
+        <div  id="wmstab" class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding">WMS</div>
       </a>    
     </div>   
    
@@ -17,12 +20,18 @@
       </div>
       <div id="urlTabContent" style="display:none">
           <p>Importa datos en tu mapa.<br><font size ="2">Debe ser en formato Geojson y con proyección WGS84</font><br>
-          <input id="urlInput" class="w3-input w3-hover-blue w3-border w3-round-large w3-border-blue" type="text" placeholder="introduce una url">
+          <input id="urlInput" class="w3-input w3-hover-blue w3-border w3-round-large w3-border-blue" type="text" placeholder="Introduce una url">
         </p>
       </div>
+      <div id="wmsTabContent" style="display:none">
+        <p>Web Map Service<br><font size ="2">Introduce la información de la capa</font><br>
+        <input id="wmsUrlInput" class="w3-input w3-hover-blue w3-border w3-round-large w3-border-blue w3-margin-bottom" type="text" placeholder="Introduce la url del servicio">
+        <input id="wmsLayerNameInput" class="w3-input w3-hover-blue w3-border w3-round-large w3-border-blue" type="text" placeholder="Nombre de la capa">
+      </p>
+    </div>
       
     </p>
-    <p>
+    <p id="share-check">
       <input id="shareLoadedMap" class="w3-check" type="checkbox" checked="checked">
       <label>Compartir automáticamente</label>
     </p>

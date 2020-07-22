@@ -10,14 +10,16 @@ import _ol_source_OSM_ from 'ol/source/osm';
  * @param {ol.Vector} rtcLayer 
  * @param {ol.OSM} osmLayer
  * @param {ol.layer.tile} catastroLayer
- * @param {ol.source.BingMaps} bingMapLayer 
+ * @param {ol.source.BingMaps} bingMapLayer
+ * @param {ol.map} map 
  */
-var ChangeMapVisibilityTool = function(rtcLayer, osmLayer, catastroLayer, bingMapLayer) {      
+var ChangeMapVisibilityTool = function(rtcLayer, osmLayer, catastroLayer, bingMapLayer, map) {      
     
     this.rtcLayer = rtcLayer;
     this.osmLayer = osmLayer;
     this.catastroLayer = catastroLayer;
     this.bingMapLayer = bingMapLayer;
+    this.map = map;
     
     this.showHideOSMBtn = document.getElementById('showHideOSMBtn');    
     _ol_events_.listen(this.showHideOSMBtn, _ol_events_EventType_.CLICK,
@@ -33,7 +35,11 @@ var ChangeMapVisibilityTool = function(rtcLayer, osmLayer, catastroLayer, bingMa
 
     this.showHideBingMapBtn = document.getElementById('showHideBingMapBtn');
     _ol_events_.listen(this.showHideBingMapBtn, _ol_events_EventType_.CLICK,
-        this.changeBingMap, this);    
+        this.changeBingMap, this);
+      
+    this.showHideWmsBtn = document.getElementById('showHideWmsBtn');
+    _ol_events_.listen(this.showHideWmsBtn, _ol_events_EventType_.CLICK,
+        this.changeCustomWMSMap, this);
 
 }
 
@@ -55,6 +61,17 @@ ChangeMapVisibilityTool.prototype.changeCatastro = function() {
 ChangeMapVisibilityTool.prototype.changeBingMap = function() {  
   var isVisible = changeVisibility(this.bingMapLayer);	
   changeBtnOpacity(this.showHideBingMapBtn, isVisible);
+}
+
+ChangeMapVisibilityTool.prototype.changeCustomWMSMap = function() {  
+  var this_ = this;
+  var layers = this.map.getLayers(); 
+  layers.forEach(function (layer) {
+    if ('customLayer' === layer.get('title')) {        
+        var isVisible = changeVisibility(layer);	
+        changeBtnOpacity(this_.showHideWmsBtn, isVisible);        
+    }              
+  });  
 }
 
 var changeBtnOpacity = function(btn, isVisible) {  
