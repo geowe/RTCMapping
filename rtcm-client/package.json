@@ -28,7 +28,7 @@
     "jsts": "^1.6.0",
     "ol": "^4.6.5",
     "simple-node-logger": "^0.93.37",
-    "socket.io": "^2.0.4",
+    "socket.io": "^2.4.0",
     "webpack-worker": "0.0.18"
   }
 }
